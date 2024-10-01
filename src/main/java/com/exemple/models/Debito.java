@@ -1,18 +1,15 @@
 package com.exemple.models;
 
+import jakarta.persistence.*;
 import lombok.Data;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
-@Entity
 @Data
+@Entity
 public class Debito {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String descricao;
     private String dataReferencia;
     private String dataPagamento;
@@ -20,4 +17,8 @@ public class Debito {
     private Double valorPago;
     private Double valorDiferenca;
     private String tipoDespesa;
+
+    public void calcularDiferenca() {
+        this.valorDiferenca = valorDebito - valorPago;
+    }
 }
